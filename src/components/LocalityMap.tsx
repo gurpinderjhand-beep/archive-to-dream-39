@@ -55,23 +55,23 @@ export function LocalityMap({ loc, active, selected, onSelect, className = "" }:
   const metro = loc.places.find((p) => p.category === "metro");
 
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-line bg-[#e9eee6] ${className}`}>
+    <div className={`relative overflow-hidden rounded-2xl border border-line bg-map ${className}`}>
       <motion.div className="absolute inset-0 origin-center" animate={{ scale: zoom }} transition={{ type: "spring", damping: 26, stiffness: 220 }}>
         <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden="true">
           {/* parks and lake */}
-          <rect x="6" y="8" width="18" height="14" rx="3" fill="#cfe3c6" />
-          <rect x="72" y="70" width="20" height="18" rx="4" fill="#cfe3c6" />
-          <ellipse cx="80" cy="22" rx="12" ry="8" fill="#bcd9e6" />
+          <rect x="6" y="8" width="18" height="14" rx="3" fill="var(--color-park)" />
+          <rect x="72" y="70" width="20" height="18" rx="4" fill="var(--color-park)" />
+          <ellipse cx="80" cy="22" rx="12" ry="8" fill="var(--color-water)" />
           {/* blocks */}
           {Array.from({ length: 6 }).map((_, i) => Array.from({ length: 6 }).map((__, j) => (
-            <rect key={`${i}-${j}`} x={4 + i * 16} y={4 + j * 16} width="12" height="12" rx="1.5" fill="#f6f5f0" opacity={(i * 7 + j * 3) % 5 === 0 ? 0 : 0.9} />
+            <rect key={`${i}-${j}`} x={4 + i * 16} y={4 + j * 16} width="12" height="12" rx="1.5" fill="var(--color-block)" opacity={(i * 7 + j * 3) % 5 === 0 ? 0 : 0.9} />
           )))}
           {/* roads */}
-          {[18, 34, 50, 66, 82].map((v) => <line key={`h${v}`} x1="0" y1={v} x2="100" y2={v} stroke="#ffffff" strokeWidth={v === 50 ? 2.6 : 1.4} />)}
-          {[18, 34, 50, 66, 82].map((v) => <line key={`v${v}`} x1={v} y1="0" x2={v} y2="100" stroke="#ffffff" strokeWidth={v === 34 ? 2.6 : 1.4} />)}
-          <path d="M0 92 C 30 70, 60 96, 100 60" stroke="#f3d9a4" strokeWidth="3" fill="none" />
+          {[18, 34, 50, 66, 82].map((v) => <line key={`h${v}`} x1="0" y1={v} x2="100" y2={v} stroke="var(--color-road)" strokeWidth={v === 50 ? 2.6 : 1.4} />)}
+          {[18, 34, 50, 66, 82].map((v) => <line key={`v${v}`} x1={v} y1="0" x2={v} y2="100" stroke="var(--color-road)" strokeWidth={v === 34 ? 2.6 : 1.4} />)}
+          <path d="M0 92 C 30 70, 60 96, 100 60" stroke="var(--color-arterial)" strokeWidth="3" fill="none" />
           {/* metro line */}
-          {metro && <path d={`M -5 ${metro.y + 20} L ${metro.x} ${metro.y} L 105 ${metro.y - 18}`} stroke="#8b5cf6" strokeOpacity="0.55" strokeWidth="1.2" strokeDasharray="2 1.2" fill="none" />}
+          {metro && <path d={`M -5 ${metro.y + 20} L ${metro.x} ${metro.y} L 105 ${metro.y - 18}`} stroke="var(--color-metro)" strokeOpacity="0.55" strokeWidth="1.2" strokeDasharray="2 1.2" fill="none" />}
           {rings && [15, 30].map((r) => <ellipse key={r} cx="50" cy="50" rx={r} ry={r * 0.8} fill="none" stroke="var(--color-teal)" strokeOpacity="0.45" strokeWidth="0.35" strokeDasharray="1 1" />)}
         </svg>
         {rings && (

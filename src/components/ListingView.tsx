@@ -1,6 +1,7 @@
 
 import Link from "@/components/AppLink";
 import { runAI } from "@/lib/ai.functions";
+import { LocalityPanel } from "@/components/LocalityPanel";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Bus, CheckCircle2, Droplets, MessageCircle, RefreshCw, Send, ShieldCheck, Sparkles, Volume2, X, Zap } from "lucide-react";
@@ -156,6 +157,8 @@ export function ListingView({ id }: { id: string }) {
               </>
             ) : <p className="mt-3 text-sm text-ink-2">No trial stays yet. Reports appear after the first renter completes a trial.</p>}
           </section>
+
+          <LocalityPanel area={l.area} />
 
           <section className="rounded-2xl border border-line bg-white p-6">
             <h2 className="text-lg font-semibold">What&apos;s been checked</h2>

@@ -17,6 +17,13 @@
   --color-green: #17803d;
   --color-green-soft: #e4f3e8;
   --color-red: #b42318;
+  --color-map: oklch(0.94 0.015 135);
+  --color-park: oklch(0.89 0.05 135);
+  --color-water: oklch(0.86 0.04 225);
+  --color-block: oklch(0.97 0.005 90);
+  --color-road: oklch(1 0 0);
+  --color-arterial: oklch(0.89 0.08 80);
+  --color-metro: oklch(0.55 0.2 295);
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }

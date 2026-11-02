@@ -1,9 +1,10 @@
+import { useState } from "react";
 import Link from "@/components/AppLink";
 import {
   BedDouble, Building2, Clock, Coffee, Drumstick, Headphones, Moon, MoonStar, Music, PartyPopper,
   Salad, Sparkles, Speaker, Sun, Sunrise, UserRound, UsersRound, UtensilsCrossed, Laptop, House, GraduationCap,
   Hourglass, Egg, Ban, Wine, Cigarette, PawPrint, Heart, Users, Scale, Wallet,
-  BadgeCheck, FileText, ClipboardCheck, CircleAlert,
+  BadgeCheck, FileText, ClipboardCheck, CircleAlert, Menu, X,
 } from "lucide-react";
 import type { Listing } from "@/lib/types";
 
@@ -32,18 +33,37 @@ export function Logo() {
   );
 }
 
+const navLinks = [
+  { href: "/matches", label: "Your matches" },
+  { href: "/locality", label: "Locality" },
+  { href: "/transactions", label: "Payments" },
+  { href: "/host", label: "List your home" },
+];
+
 export function Nav() {
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Logo />
-        <nav className="flex items-center gap-1 text-sm">
-          <Link href="/#how" className="hidden rounded-lg px-3 py-2 text-ink-2 hover:bg-white sm:block">How it works</Link>
-          <Link href="/matches" className="hidden rounded-lg px-3 py-2 text-ink-2 hover:bg-white sm:block">Your matches</Link>
-          <Link href="/host" className="rounded-lg px-3 py-2 text-ink-2 hover:bg-white">List your home</Link>
-          <Link href="/start" className="rounded-lg bg-ink px-4 py-2 font-medium text-white hover:bg-ink-2">Find a home</Link>
+        <nav className="hidden items-center gap-1 text-sm md:flex" aria-label="Main">
+          {navLinks.map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-lg px-3 py-2 text-ink-2 hover:bg-white [&.active]:bg-white [&.active]:font-medium [&.active]:text-ink">{l.label}</Link>
+          ))}
+          <Link href="/start" className="ml-1 rounded-lg bg-ink px-4 py-2 font-medium text-white hover:bg-ink-2">Find a home</Link>
         </nav>
+        <button onClick={() => setOpen((v) => !v)} aria-expanded={open} aria-label="Menu" className="rounded-lg p-2 text-ink hover:bg-white md:hidden">
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+      {open && (
+        <nav className="border-t border-line bg-paper px-5 pb-4 pt-2 md:hidden" aria-label="Mobile">
+          {navLinks.map((l) => (
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-ink-2 hover:bg-white">{l.label}</Link>
+          ))}
+          <Link href="/start" onClick={() => setOpen(false)} className="mt-2 block rounded-lg bg-ink px-4 py-3 text-center font-medium text-white">Find a home</Link>
+        </nav>
+      )}
     </header>
   );
 }
