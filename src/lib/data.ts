@@ -1,3 +1,10 @@
+import living1 from "@/assets/homes/living-1.jpg";
+import living2 from "@/assets/homes/living-2.jpg";
+import bedroom1 from "@/assets/homes/bedroom-1.jpg";
+import kitchen1 from "@/assets/homes/kitchen-1.jpg";
+import studio1 from "@/assets/homes/studio-1.jpg";
+import balcony1 from "@/assets/homes/balcony-1.jpg";
+import street1 from "@/assets/homes/street-1.jpg";
 import type { Flatmate, Habits, HouseRules, Listing, LivedInReport, Profile } from "./types";
 
 // Demo data only. Every listing, person and report here is invented for the hackathon demo.
@@ -263,6 +270,16 @@ export const listings: Listing[] = [
     answers: { noise: "We're both on calls most of the day, so we keep it library-quiet until 6.", default: "Sunday brunches are a tradition here. You're welcome to join." },
   },
 ];
+
+// Demo photography (AI-generated, representative, not the actual homes).
+const photoSets = [
+  [living1, bedroom1, kitchen1, street1],
+  [studio1, kitchen1, balcony1, street1],
+  [living2, bedroom1, balcony1, street1],
+  [bedroom1, living1, kitchen1, street1],
+  [balcony1, living2, bedroom1, street1],
+];
+listings.forEach((l, i) => { if (!l.photos?.length) l.photos = photoSets[i % photoSets.length]; });
 
 export const demoProfile: Profile = {
   name: "Riya", duration: "1m", area: "HSR Layout", budget: 16000, living: "flatmates", gender: "woman", householdPref: "either",
