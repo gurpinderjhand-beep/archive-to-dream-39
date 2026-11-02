@@ -40,8 +40,8 @@ export function ListingView({ id }: { id: string }) {
   useEffect(() => {
     if (!profile || !l) return;
     let live = true;
-    const lite = { ...l, photos: undefined };
-    runAI({ data: { task: "match-explain", listingId: l.id, listing: lite as Listing, profile } })
+    const lite = { ...l, photos: undefined } as unknown as Listing;
+    runAI({ data: { task: "match-explain", listingId: l.id, listing: lite, profile } })
       .then((d) => live && d.text && setAi(d))
       .catch(() => live && setAi({ text: scoreListing(profile, l).reason, source: "fallback" }));
     return () => { live = false; };
