@@ -25,9 +25,9 @@ export function LocalityPanel({ area }: { area: string }) {
         </div>
       </div>
       <div className="mt-4"><CategoryFilter active={active} onToggle={toggle} counts={counts} /></div>
-      <div className="mt-4 grid gap-4 md:grid-cols-[1.3fr_1fr]">
-        <LocalityMap loc={loc} active={active} selected={selected} onSelect={(p) => setSelected(p?.id ?? null)} className="aspect-[4/3]" />
-        <div className="space-y-1">
+      <div className="mt-4 space-y-3">
+        <LocalityMap loc={loc} active={active} selected={selected} onSelect={(p) => setSelected(p?.id ?? null)} className="aspect-[16/10] w-full" />
+        <div className="grid gap-1 sm:grid-cols-2">
           {list.map((p) => <PlaceRow key={p.id} p={p} active={p.id === selected} onClick={() => setSelected(p.id === selected ? null : p.id)} />)}
         </div>
       </div>
