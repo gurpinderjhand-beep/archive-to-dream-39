@@ -1,5 +1,6 @@
 
 import Link from "@/components/AppLink";
+import { runAI } from "@/lib/ai.functions";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Bus, CheckCircle2, Droplets, MessageCircle, RefreshCw, Send, ShieldCheck, Sparkles, Volume2, X, Zap } from "lucide-react";
@@ -40,8 +41,7 @@ export function ListingView({ id }: { id: string }) {
     if (!profile || !l) return;
     let live = true;
     const lite = { ...l, photos: undefined };
-    fetch("/api/ai", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ task: "match-explain", listingId: l.id, listing: lite, profile }) })
-      .then((r) => r.json())
+    runAI({ data: { task: "match-explain", listingId: l.id, listing: lite as Listing, profile } })
       .then((d) => live && d.text && setAi(d))
       .catch(() => live && setAi({ text: scoreListing(profile, l).reason, source: "fallback" }));
     return () => { live = false; };
