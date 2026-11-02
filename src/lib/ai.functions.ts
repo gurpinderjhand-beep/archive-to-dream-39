@@ -7,7 +7,7 @@ type Input = { task: string; listingId?: string; listing?: Listing; profile?: Pr
 
 // Replaces the old POST /api/ai route. The Gemini key stays on the server.
 export const runAI = createServerFn({ method: "POST" })
-  .inputValidator((d: Input) => d)
+  .validator((d: Input) => d)
   .handler(async ({ data: body }) => {
     const { askAI } = await import("./ai");
     if (body.task !== "match-explain") throw new Error("Unknown task");
