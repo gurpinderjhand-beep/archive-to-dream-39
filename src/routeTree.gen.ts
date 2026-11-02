@@ -10,8 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LocalityRouteImport } from './routes/locality'
 import { Route as MatchesRouteImport } from './routes/matches'
 import { Route as StartRouteImport } from './routes/start'
+import { Route as TransactionsRouteImport } from './routes/transactions'
 import { Route as HostIndexRouteImport } from './routes/host.index'
 import { Route as HostNewRouteImport } from './routes/host.new'
 import { Route as HomesIdIndexRouteImport } from './routes/homes.$id.index'
@@ -22,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocalityRoute = LocalityRouteImport.update({
+  id: '/locality',
+  path: '/locality',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MatchesRoute = MatchesRouteImport.update({
   id: '/matches',
   path: '/matches',
@@ -30,6 +37,11 @@ const MatchesRoute = MatchesRouteImport.update({
 const StartRoute = StartRouteImport.update({
   id: '/start',
   path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransactionsRoute = TransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HostIndexRoute = HostIndexRouteImport.update({
@@ -55,8 +67,10 @@ const HomesIdTrialRoute = HomesIdTrialRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/locality': typeof LocalityRoute
   '/matches': typeof MatchesRoute
   '/start': typeof StartRoute
+  '/transactions': typeof TransactionsRoute
   '/host/new': typeof HostNewRoute
   '/host/': typeof HostIndexRoute
   '/homes/$id/trial': typeof HomesIdTrialRoute
@@ -64,8 +78,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/locality': typeof LocalityRoute
   '/matches': typeof MatchesRoute
   '/start': typeof StartRoute
+  '/transactions': typeof TransactionsRoute
   '/host/new': typeof HostNewRoute
   '/host': typeof HostIndexRoute
   '/homes/$id/trial': typeof HomesIdTrialRoute
@@ -74,8 +90,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/locality': typeof LocalityRoute
   '/matches': typeof MatchesRoute
   '/start': typeof StartRoute
+  '/transactions': typeof TransactionsRoute
   '/host/new': typeof HostNewRoute
   '/host/': typeof HostIndexRoute
   '/homes/$id/trial': typeof HomesIdTrialRoute
@@ -85,8 +103,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/locality'
     | '/matches'
     | '/start'
+    | '/transactions'
     | '/host/new'
     | '/host/'
     | '/homes/$id/trial'
@@ -94,8 +114,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/locality'
     | '/matches'
     | '/start'
+    | '/transactions'
     | '/host/new'
     | '/host'
     | '/homes/$id/trial'
@@ -103,8 +125,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/locality'
     | '/matches'
     | '/start'
+    | '/transactions'
     | '/host/new'
     | '/host/'
     | '/homes/$id/trial'
@@ -113,8 +137,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LocalityRoute: typeof LocalityRoute
   MatchesRoute: typeof MatchesRoute
   StartRoute: typeof StartRoute
+  TransactionsRoute: typeof TransactionsRoute
   HostNewRoute: typeof HostNewRoute
   HostIndexRoute: typeof HostIndexRoute
   HomesIdTrialRoute: typeof HomesIdTrialRoute
@@ -130,6 +156,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locality': {
+      id: '/locality'
+      path: '/locality'
+      fullPath: '/locality'
+      preLoaderRoute: typeof LocalityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/matches': {
       id: '/matches'
       path: '/matches'
@@ -142,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/start'
       fullPath: '/start'
       preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transactions': {
+      id: '/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof TransactionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/host/': {
@@ -177,8 +217,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LocalityRoute: LocalityRoute,
   MatchesRoute: MatchesRoute,
   StartRoute: StartRoute,
+  TransactionsRoute: TransactionsRoute,
   HostNewRoute: HostNewRoute,
   HostIndexRoute: HostIndexRoute,
   HomesIdTrialRoute: HomesIdTrialRoute,
