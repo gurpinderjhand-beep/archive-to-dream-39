@@ -20,10 +20,11 @@ export function HomeVisual({ listing, index = 0, className = "", label = true }:
     <div className={`relative overflow-hidden bg-paper ${className}`}>
       {photo ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={photo} alt={`${listing.title}, photo ${index + 1}`} className="h-full w-full object-cover" />
+        <img src={photo} alt={`${listing.title}, photo ${index + 1}`} loading="lazy" className="h-full w-full object-cover" />
       ) : (
         <Scene seed={`${listing.id}-${index}`} kind={viewsFor(listing)[index % 3]} className="h-full w-full" />
       )}
+      {label && photo && !listing.byYou && <span className="absolute bottom-2 right-2 rounded-md bg-white/85 px-1.5 py-0.5 text-[11px] text-muted">Sample photo</span>}
       {label && !photo && <span className="absolute bottom-2 right-2 rounded-md bg-white/85 px-1.5 py-0.5 text-[11px] text-muted">Illustration</span>}
     </div>
   );
