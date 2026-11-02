@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MatchesRouteImport } from './routes/matches'
+import { Route as StartRouteImport } from './routes/start'
+import { Route as HostIndexRouteImport } from './routes/host.index'
+import { Route as HostNewRouteImport } from './routes/host.new'
+import { Route as HomesIdIndexRouteImport } from './routes/homes.$id.index'
+import { Route as HomesIdTrialRouteImport } from './routes/homes.$id.trial'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MatchesRoute = MatchesRouteImport.update({
+  id: '/matches',
+  path: '/matches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartRoute = StartRouteImport.update({
+  id: '/start',
+  path: '/start',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostIndexRoute = HostIndexRouteImport.update({
+  id: '/host/',
+  path: '/host/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HostNewRoute = HostNewRouteImport.update({
+  id: '/host/new',
+  path: '/host/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomesIdIndexRoute = HomesIdIndexRouteImport.update({
+  id: '/homes/$id/',
+  path: '/homes/$id/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomesIdTrialRoute = HomesIdTrialRouteImport.update({
+  id: '/homes/$id/trial',
+  path: '/homes/$id/trial',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/matches': typeof MatchesRoute
+  '/start': typeof StartRoute
+  '/host/new': typeof HostNewRoute
+  '/host/': typeof HostIndexRoute
+  '/homes/$id/trial': typeof HomesIdTrialRoute
+  '/homes/$id/': typeof HomesIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/matches': typeof MatchesRoute
+  '/start': typeof StartRoute
+  '/host/new': typeof HostNewRoute
+  '/host': typeof HostIndexRoute
+  '/homes/$id/trial': typeof HomesIdTrialRoute
+  '/homes/$id': typeof HomesIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/matches': typeof MatchesRoute
+  '/start': typeof StartRoute
+  '/host/new': typeof HostNewRoute
+  '/host/': typeof HostIndexRoute
+  '/homes/$id/trial': typeof HomesIdTrialRoute
+  '/homes/$id/': typeof HomesIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/matches'
+    | '/start'
+    | '/host/new'
+    | '/host/'
+    | '/homes/$id/trial'
+    | '/homes/$id/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/matches'
+    | '/start'
+    | '/host/new'
+    | '/host'
+    | '/homes/$id/trial'
+    | '/homes/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/matches'
+    | '/start'
+    | '/host/new'
+    | '/host/'
+    | '/homes/$id/trial'
+    | '/homes/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MatchesRoute: typeof MatchesRoute
+  StartRoute: typeof StartRoute
+  HostNewRoute: typeof HostNewRoute
+  HostIndexRoute: typeof HostIndexRoute
+  HomesIdTrialRoute: typeof HomesIdTrialRoute
+  HomesIdIndexRoute: typeof HomesIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/matches': {
+      id: '/matches'
+      path: '/matches'
+      fullPath: '/matches'
+      preLoaderRoute: typeof MatchesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/start': {
+      id: '/start'
+      path: '/start'
+      fullPath: '/start'
+      preLoaderRoute: typeof StartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/host/': {
+      id: '/host/'
+      path: '/host'
+      fullPath: '/host/'
+      preLoaderRoute: typeof HostIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/host/new': {
+      id: '/host/new'
+      path: '/host/new'
+      fullPath: '/host/new'
+      preLoaderRoute: typeof HostNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homes/$id/': {
+      id: '/homes/$id/'
+      path: '/homes/$id'
+      fullPath: '/homes/$id/'
+      preLoaderRoute: typeof HomesIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/homes/$id/trial': {
+      id: '/homes/$id/trial'
+      path: '/homes/$id/trial'
+      fullPath: '/homes/$id/trial'
+      preLoaderRoute: typeof HomesIdTrialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MatchesRoute: MatchesRoute,
+  StartRoute: StartRoute,
+  HostNewRoute: HostNewRoute,
+  HostIndexRoute: HostIndexRoute,
+  HomesIdTrialRoute: HomesIdTrialRoute,
+  HomesIdIndexRoute: HomesIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,5 @@
+[
+ {"capability":"code, routes, visuals","source":"Next.js app router","outcome":"migrate","status":"done","next_action":"none"},
+ {"capability":"schema/records/auth","source":"none (browser storage only)","outcome":"not applicable","status":"verified","next_action":"none"},
+ {"capability":"AI match explanation","source":"Gemini via /api/ai","outcome":"preserved as server function","status":"pending","next_action":"Optional GEMINI_API_KEY; rule-based fallback works without it"}
+]
